@@ -34,9 +34,9 @@ CREATE TABLE Oferta(
 
 CREATE TABLE Libro(
   idLibro int identity(1,1) NOT NULL primary key,
-  AutorId int NOT NULL,
+  idAutor int NOT NULL,
   titulo varchar(15) NOT NULL,
-  OfertasId int NOT NULL,
+  idOfertas int NOT NULL,
   descripcion text NOT NULL,
   isbn varchar(20) NOT NULL,
   categoria varchar(50) NOT NULL,
@@ -44,10 +44,11 @@ CREATE TABLE Libro(
   portadaLibro varchar(500)
 );
 
-ALTER TABLE Libro ADD
-  FOREIGN KEY (AutorId) REFERENCES Autor(idAutor) ON DELETE CASCADE,
-  FOREIGN KEY (OfertasId) REFERENCES Oferta(idOfertas) ON DELETE CASCADE;
+ALTER TABLE Libro ADD CONSTRAINT fk_IdAutor
+  FOREIGN KEY (idAutor) REFERENCES Autor(idAutor) ON DELETE CASCADE;
 
+ALTER TABLE Libro ADD CONSTRAINT fk_IdOfertas
+  FOREIGN KEY (idOfertas) REFERENCES Oferta(idOfertas) ON DELETE CASCADE;
 
 create table Venta(
 	idVenta int identity(1,1) not null primary key,
@@ -59,8 +60,10 @@ create table Venta(
 	totalPagar float NOT NULL
 );
 
-ALTER TABLE Venta ADD
-  FOREIGN KEY (idLibro) REFERENCES Libro(idLibro) ON DELETE CASCADE,
+ALTER TABLE Venta ADD CONSTRAINT fk_IdLibro
+  FOREIGN KEY (idLibro) REFERENCES Libro(idLibro) ON DELETE CASCADE;
+
+ALTER TABLE Venta ADD CONSTRAINT fk_IdUsuario
   FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE;
 
 

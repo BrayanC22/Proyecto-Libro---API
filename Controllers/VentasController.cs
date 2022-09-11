@@ -19,13 +19,18 @@ namespace BookStoreAPI.Controllers
         public VentasController(AppDbContext context)
         {
             _context = context;
+            _context.Usuario.ToList();
+            _context.Libro.ToList();
+            _context.Autor.ToList();
+            _context.Oferta.ToList();
         }
 
         // GET: api/Ventas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Venta>>> GetVenta()
         {
-          if (_context.Venta == null)
+            
+            if (_context.Venta == null)
           {
               return NotFound();
           }

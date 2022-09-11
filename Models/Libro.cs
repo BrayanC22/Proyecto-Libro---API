@@ -7,11 +7,11 @@ namespace BookStoreAPI.Models
         [Key]
         public int? idLibro { get; set; }
         [Required]
-        public Autor? AutorId { get; set; }
+        public Autor? idAuto { get; set; }
         [Required]
         public string? titulo { get; set; }
         [Required]
-        public Oferta? OfertasId { get; set; }
+        public Oferta? idOferta { get; set; }
         [Required]
         public string? descripcion { get; set; }
         [Required]

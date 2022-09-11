@@ -19,6 +19,8 @@ namespace BookStoreAPI.Controllers
         public LibroesController(AppDbContext context)
         {
             _context = context;
+            _context.Autor.ToList();
+            _context.Oferta.ToList();
         }
 
         // GET: api/Libroes

@@ -7,9 +7,9 @@ namespace BookStoreAPI.Models
         [Key]
         public int? idVenta { get; set; }
         [Required]
-        public Libro? idLibro { get; set; }
+        public Libro? idLibr { get; set; }
         [Required]
-        public Usuario? idUsuario { get; set; }
+        public Usuario? idUsuari { get; set; }
         [Required]
         public int? cantidad { get; set; }
         [Required]
