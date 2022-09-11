@@ -15,8 +15,6 @@ CREATE TABLE Usuario(
 	password varchar(50) NOT NULL
 );
 
-
-
 CREATE TABLE Autor(
 	idAutor int identity(1,1) NOT NULL primary key,
 	nombreAutor varchar(50) NOT NULL,
@@ -31,7 +29,6 @@ CREATE TABLE Oferta(
 	temporada varchar(20) NOT NULL,
 	categoria varchar(20) NOT NULL,
 	descuento decimal(18,2) NOT NULL,
-	cupones varchar(100) NOT NULL,
 	descripcion text
 );
 
@@ -43,14 +40,13 @@ CREATE TABLE Libro(
   descripcion text NOT NULL,
   isbn varchar(20) NOT NULL,
   categoria varchar(50) NOT NULL,
-  editorial varchar(50) NOT NULL,
   precio decimal(18,2),
   portadaLibro varchar(500)
 );
 
-
 ALTER TABLE Libro ADD
-  FOREIGN KEY (idAutor) REFERENCES Autor(idAutor) ON DELETE CASCADE;
+  FOREIGN KEY (idAutor) REFERENCES Autor(idAutor) ON DELETE CASCADE,
+  FOREIGN KEY (idOfertas) REFERENCES Oferta(idOfertas) ON DELETE CASCADE;
 
 
 create table Venta(

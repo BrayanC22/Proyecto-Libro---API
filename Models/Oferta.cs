@@ -13,8 +13,6 @@ namespace BookStoreAPI.Models
         [Required]
         public double? descuento { get; set; }
         [Required]
-        public string? cupones { get; set; }
-        [Required]
         public string? descripcion { get; set; }
     }
 }
