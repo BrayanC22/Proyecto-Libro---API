@@ -34,9 +34,9 @@ CREATE TABLE Oferta(
 
 CREATE TABLE Libro(
   idLibro int identity(1,1) NOT NULL primary key,
-  idAutor int NOT NULL,
+  AutorId int NOT NULL,
   titulo varchar(15) NOT NULL,
-  idOfertas int NOT NULL,
+  OfertasId int NOT NULL,
   descripcion text NOT NULL,
   isbn varchar(20) NOT NULL,
   categoria varchar(50) NOT NULL,
@@ -45,8 +45,8 @@ CREATE TABLE Libro(
 );
 
 ALTER TABLE Libro ADD
-  FOREIGN KEY (idAutor) REFERENCES Autor(idAutor) ON DELETE CASCADE,
-  FOREIGN KEY (idOfertas) REFERENCES Oferta(idOfertas) ON DELETE CASCADE;
+  FOREIGN KEY (AutorId) REFERENCES Autor(idAutor) ON DELETE CASCADE,
+  FOREIGN KEY (OfertasId) REFERENCES Oferta(idOfertas) ON DELETE CASCADE;
 
 
 create table Venta(
