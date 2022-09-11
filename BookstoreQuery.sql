@@ -28,7 +28,7 @@ CREATE TABLE Oferta(
 	idOfertas int identity(1,1) NOT NULL primary key,
 	temporada varchar(20) NOT NULL,
 	categoria varchar(20) NOT NULL,
-	descuento decimal(18,2) NOT NULL,
+	descuento float NOT NULL,
 	descripcion text
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE Libro(
   descripcion text NOT NULL,
   isbn varchar(20) NOT NULL,
   categoria varchar(50) NOT NULL,
-  precio decimal(18,2),
+  precio float NOT NULL,
   portadaLibro varchar(500)
 );
 
@@ -54,9 +54,9 @@ create table Venta(
 	idLibro int NOT NULL,
 	idUsuario int NOT NULL,
 	cantidad int NOT NULL,
-	impuesto decimal(18,2) NOT NULL,
-	subtotal decimal(18,2) NOT NULL,
-	totalPagar decimal(18,2) NOT NULL
+	impuesto float NOT NULL,
+	subtotal float NOT NULL,
+	totalPagar float NOT NULL
 );
 
 ALTER TABLE Venta ADD
