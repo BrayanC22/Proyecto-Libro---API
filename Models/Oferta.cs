@@ -9,8 +9,6 @@ namespace BookStoreAPI.Models
         [Required]
         public string? temporada { get; set; }
         [Required]
-        public string? categoria { get; set; }
-        [Required]
         public double? descuento { get; set; }
         [Required]
         public string? descripcion { get; set; }

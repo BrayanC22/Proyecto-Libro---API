@@ -15,6 +15,7 @@ namespace BookStoreAPI.Data
         public DbSet<Oferta> Oferta { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Venta> Venta { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
 
     }
 }
