@@ -52,6 +52,34 @@ namespace BookStoreAPI.Controllers
             return libro;
         }
 
+
+        [HttpGet("{Nombre}/BuscarCategoria")]
+        //Filtrar libros por categoria
+        public async Task<IEnumerable<Libro>> BuscarCategoria(string Nombre)
+        {
+
+            IQueryable<Libro> queryLibro = _context.Libro;
+            IQueryable<Oferta> queryOferta = _context.Oferta;
+            IQueryable<Categoria> queryCategoria = _context.Categoria;
+            IQueryable<Autor> queryAutor = _context.Autor;
+
+            //Cargar los registros de la tabla Ciudad.
+            queryOferta.ToList();
+            queryCategoria.ToList();
+            queryAutor.ToList();
+
+            //Obtener la lista de clientes que cuyo ID de ciudad sea igual al obtenido según el dato que ingresamos. //*/
+
+            queryLibro = queryLibro.Where(c => c.idCategori.Nombre.StartsWith(Nombre));
+
+            if (queryLibro == null)
+            {
+                return null;
+            }
+            return await queryLibro.ToListAsync();
+        }
+
+
         // PUT: api/Libroes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

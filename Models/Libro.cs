@@ -17,10 +17,9 @@ namespace BookStoreAPI.Models
         [Required]
         public string? isbn { get; set; }
         [Required]
-        public string? categoria { get; set; }
+        public Categoria? idCategori { get; set; }
         [Required]
-        public double? precio { get; set; }
-        [Required]
-        public string? portadaLibro { get; set; }
+        public double? precio { get; set; }   
+
     }
 }
