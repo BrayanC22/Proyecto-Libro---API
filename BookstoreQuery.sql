@@ -1,4 +1,4 @@
-﻿/*CREATE DATABASE BookstoreDB;*/
+﻿-- CREATE DATABASE BookstoreDB;
 
 
 -- Libro, Autor, Usuario, Venta, Oferta 
@@ -42,10 +42,10 @@ CREATE TABLE Categoria(
 	Nombre varchar(50) NOT NULL,
 );
 
-insert into Categoria(Nombre) values (1,'Ficcion');
-insert into Categoria(Nombre) values (2,'Misterio');
-insert into Categoria(Nombre) values (3,'Clasico');
-insert into Categoria(Nombre) values (4,'Fantasia');
+insert into Categoria(idCategoria, Nombre) values (1,'Ficcion');
+insert into Categoria(idCategoria, Nombre) values (2,'Misterio');
+insert into Categoria(idCategoria, Nombre) values (3,'Clasico');
+insert into Categoria(idCategoria, Nombre) values (4,'Fantasia');
 
 
 CREATE TABLE Libro(
