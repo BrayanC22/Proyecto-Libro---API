@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookStoreAPI.Data;
 using BookStoreAPI.Models;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace BookStoreAPI.Controllers
 {
@@ -15,12 +19,14 @@ namespace BookStoreAPI.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public UsuariosController(AppDbContext context)
+        public UsuariosController(AppDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
-
+         
         // GET: api/Usuarios
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuario()
@@ -119,6 +125,58 @@ namespace BookStoreAPI.Controllers
         private bool UsuarioExists(int? id)
         {
             return (_context.Usuario?.Any(e => e.idUsuario == id)).GetValueOrDefault();
+        }
+
+
+
+
+
+        [HttpPost("Login")]
+        public async Task<ActionResult> PostCliente(UsuarioLogin user)
+        {
+            Console.WriteLine(user.nombreUsuario);
+            Console.WriteLine(user.password);
+
+            var userTemp = await _context.Usuario.FirstOrDefaultAsync
+                (x => x.nombreUsuario.ToLower().Equals(user.nombreUsuario));
+            if (userTemp == null)
+            {
+                return BadRequest("UserNotFound");
+            }
+            else if (userTemp.password.Equals(user.password))
+            {
+                //return Ok("UserFound");
+                return Ok(JsonConvert.SerializeObject(CrearToken(userTemp)));
+            }
+            else
+            {
+                return BadRequest("keyError");
+            }
+
+        }
+
+        private string CrearToken(Usuario user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.idUsuario.ToString()),
+                new Claim(ClaimTypes.Name, user.nombreUsuario),
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = System.DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
+
         }
     }
 }
