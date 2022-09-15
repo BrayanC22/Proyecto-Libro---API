@@ -21,9 +21,10 @@ namespace BookStoreAPI.Controllers
         private readonly AppDbContext _context;
         private readonly IConfiguration _configuration;
 
-        public UsuariosController(AppDbContext context)
+        public UsuariosController(AppDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
          
         // GET: api/Usuarios
@@ -131,7 +132,7 @@ namespace BookStoreAPI.Controllers
 
 
         [HttpPost("Login")]
-        public async Task<ActionResult> PostCliente(Usuario user)
+        public async Task<ActionResult> PostCliente(UsuarioLogin user)
         {
             Console.WriteLine(user.nombreUsuario);
             Console.WriteLine(user.password);
