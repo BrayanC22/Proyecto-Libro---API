@@ -120,5 +120,37 @@ namespace BookStoreAPI.Controllers
         {
             return (_context.Autor?.Any(e => e.idAutor == id)).GetValueOrDefault();
         }
+
+        //Filtrar nombre que inician con...
+        [HttpGet("{nombreAutor}/EmpiezaNombre")]
+        public async Task<IEnumerable<Autor>> BuscaNombre(string nombreAutor)
+        {
+            IQueryable<Autor> query = _context.Autor;
+            query = query.Where(e => e.nombreAutor.StartsWith(nombreAutor)); // --> Verifica si el texto empieza con lo enviado como parametro
+            if (query == null)
+            {
+                return null;
+            }
+            return await query.ToListAsync();
+        }
+
+        [HttpGet("{nombreAutor}/BucarAutorLibro")]
+        public async Task<IEnumerable<Libro>> BucarAutorLibro(string nombreAutor)
+        {
+            IQueryable<Libro> queryLibro = _context.Libro;
+            IQueryable<Autor> queryAutor = _context.Autor;
+            IQueryable<Categoria> queryCategoria = _context.Categoria;
+
+            queryAutor.ToList();
+           
+            queryCategoria.ToList();
+
+            queryLibro = queryLibro.Where(c => c.idAuto.nombreAutor.StartsWith(nombreAutor));
+            if (queryLibro == null)
+            {
+                return null;
+            }
+            return await queryLibro.ToListAsync();
+        }
     }
 }
