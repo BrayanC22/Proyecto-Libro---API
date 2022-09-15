@@ -21,6 +21,7 @@ namespace BookStoreAPI.Controllers
             _context = context;
             _context.Autor.ToList();
             _context.Oferta.ToList();
+            _context.Categoria.ToList();
         }
 
         // GET: api/Libroes
