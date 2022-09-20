@@ -15,6 +15,9 @@ CREATE TABLE Usuario(
 	password varchar(50) NOT NULL
 );
 
+insert into Usuario(nombre,apellido,fechaNacimiento,rolUsuario,nombreUsuario,password) values ('Brayan','C','2000','admin','admin','admin');
+
+
 CREATE TABLE Autor(
 	idAutor int identity(1,1) NOT NULL primary key,
 	nombreAutor varchar(50) NOT NULL,
