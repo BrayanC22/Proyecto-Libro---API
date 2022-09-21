@@ -88,8 +88,13 @@ namespace BookStoreAPI.Controllers
         {
             IQueryable<Libro> queryLibro = _context.Libro;
             IQueryable<Oferta> queryOferta = _context.Oferta;
+            IQueryable<Categoria> queryCategoria = _context.Categoria;
+            IQueryable<Autor> queryAutor = _context.Autor;
 
             queryOferta.ToList();
+            queryCategoria.ToList();
+            queryAutor.ToList();
+
 
             queryLibro = queryLibro.Where(c => c.idOferta.temporada.StartsWith(Temporada));
             if (queryLibro == null)

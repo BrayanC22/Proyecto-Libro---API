@@ -21,5 +21,6 @@ namespace BookStoreAPI.Models
         [Required]
         public double? precio { get; set; }   
 
+
     }
 }
