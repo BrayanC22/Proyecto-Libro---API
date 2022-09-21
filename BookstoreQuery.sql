@@ -60,6 +60,7 @@ CREATE TABLE Libro(
   isbn varchar(20) NOT NULL,
   idCategoria int NOT NULL,
   precio float NOT NULL,
+  portada varchar (200) NOT NULL,
 );
 insert into Libro(idAutor,titulo,idOfertas,descripcion,isbn,idCategoria,precio) values (1,'oscar',3,'hola','hola2',3,20);
 insert into Libro(idAutor,titulo,idOfertas,descripcion,isbn,idCategoria,precio) values (1,'rexii',2,'hola','hola2',2,20);
