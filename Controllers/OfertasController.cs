@@ -104,6 +104,7 @@ namespace BookStoreAPI.Controllers
             return await queryLibro.ToListAsync();
         }
 
+
         //Filtrar ofertas por Temporada
 
         [HttpGet("{Nombre}/BuscarCategoriaConOfertas")]
@@ -131,7 +132,115 @@ namespace BookStoreAPI.Controllers
           return await queryLibro.ToListAsync();
         }
 
-    
+
+        //Apis para clasicar ofertas por categoria
+        //ficcion
+        [HttpGet("/BuscarCategFiccion")]
+        public async Task<IEnumerable<Libro>> BuscarCategFiccion()
+        {
+
+            IQueryable<Libro> queryLibro = _context.Libro;
+            IQueryable<Oferta> queryOferta = _context.Oferta;
+            IQueryable<Categoria> queryCategoria = _context.Categoria;
+            IQueryable<Autor> queryAutor = _context.Autor;
+
+            //Cargar los registros de la tabla Ciudad.
+            queryOferta.ToList();
+            queryCategoria.ToList();
+            queryAutor.ToList();
+
+            //Obtener la lista de clientes que cuyo ID de ciudad sea igual al obtenido según el dato que ingresamos. //*/
+
+            queryLibro = queryLibro.Where(c =>  c.idCategori.Nombre == "Ficcion" && c.idOferta.temporada != "No aplica");
+
+            if (queryLibro == null)
+            {
+                return null;
+            }
+            return await queryLibro.ToListAsync();
+        }
+
+        //Misterio
+        [HttpGet("/BuscarCategMisterio")]
+        public async Task<IEnumerable<Libro>> BuscarCategMisterio()
+        {
+
+            IQueryable<Libro> queryLibro = _context.Libro;
+            IQueryable<Oferta> queryOferta = _context.Oferta;
+            IQueryable<Categoria> queryCategoria = _context.Categoria;
+            IQueryable<Autor> queryAutor = _context.Autor;
+
+            //Cargar los registros de la tabla Ciudad.
+            queryOferta.ToList();
+            queryCategoria.ToList();
+            queryAutor.ToList();
+
+            //Obtener la lista de clientes que cuyo ID de ciudad sea igual al obtenido según el dato que ingresamos. //*/
+
+            queryLibro = queryLibro.Where(c => c.idCategori.Nombre == "Misterio" && c.idOferta.temporada != "No aplica");
+
+            if (queryLibro == null)
+            {
+                return null;
+            }
+            return await queryLibro.ToListAsync();
+        }
+
+        //Clasico
+        [HttpGet("/BuscarCategClasico")]
+        public async Task<IEnumerable<Libro>> BuscarCategClasico()
+        {
+
+            IQueryable<Libro> queryLibro = _context.Libro;
+            IQueryable<Oferta> queryOferta = _context.Oferta;
+            IQueryable<Categoria> queryCategoria = _context.Categoria;
+            IQueryable<Autor> queryAutor = _context.Autor;
+
+            //Cargar los registros de la tabla Ciudad.
+            queryOferta.ToList();
+            queryCategoria.ToList();
+            queryAutor.ToList();
+
+            //Obtener la lista de clientes que cuyo ID de ciudad sea igual al obtenido según el dato que ingresamos. //*/
+
+            queryLibro = queryLibro.Where(c => c.idCategori.Nombre == "Clasico" && c.idOferta.temporada != "No aplica");
+
+            if (queryLibro == null)
+            {
+                return null;
+            }
+            return await queryLibro.ToListAsync();
+        }
+
+
+        //Fantasia
+        [HttpGet("/BuscarCategFantasia")]
+        public async Task<IEnumerable<Libro>> BuscarCategFantasia()
+        {
+
+            IQueryable<Libro> queryLibro = _context.Libro;
+            IQueryable<Oferta> queryOferta = _context.Oferta;
+            IQueryable<Categoria> queryCategoria = _context.Categoria;
+            IQueryable<Autor> queryAutor = _context.Autor;
+
+            //Cargar los registros de la tabla Ciudad.
+            queryOferta.ToList();
+            queryCategoria.ToList();
+            queryAutor.ToList();
+
+            //Obtener la lista de clientes que cuyo ID de ciudad sea igual al obtenido según el dato que ingresamos. //*/
+
+            queryLibro = queryLibro.Where(c => c.idCategori.Nombre == "Fantasia" && c.idOferta.temporada != "No aplica");
+          
+            if (queryLibro == null)
+            {
+                return null;
+            }
+            return await queryLibro.ToListAsync();
+        }
+
+
+
         // PUT: api/Ofertas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
