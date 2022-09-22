@@ -80,35 +80,10 @@ namespace BookStoreAPI.Controllers
         }
 
 
+        //Filtrar ofertas por titulo
 
-        //Filtrar Temporada que inician con...
-
-        [HttpGet("{Temporada}/BuscarLibroXTemporada")]
-        public async Task<IEnumerable<Libro>> BuscarTemporadaIni(string Temporada)
-        {
-            IQueryable<Libro> queryLibro = _context.Libro;
-            IQueryable<Oferta> queryOferta = _context.Oferta;
-            IQueryable<Categoria> queryCategoria = _context.Categoria;
-            IQueryable<Autor> queryAutor = _context.Autor;
-
-            queryOferta.ToList();
-            queryCategoria.ToList();
-            queryAutor.ToList();
-
-
-            queryLibro = queryLibro.Where(c => c.idOferta.temporada.StartsWith(Temporada));
-            if (queryLibro == null)
-            {
-                return null;
-            }
-            return await queryLibro.ToListAsync();
-        }
-
-
-        //Filtrar ofertas por Temporada
-
-        [HttpGet("{Nombre}/BuscarCategoriaConOfertas")]
-        public async Task<IEnumerable<Libro>> BuscarCategoriaOfertas(string Nombre)
+        [HttpGet("{Titulo}/BuscarlibroConOfertasTitulo")]
+        public async Task<IEnumerable<Libro>> BuscarLibrosOfertasTitulo(string Titulo)
         {
 
             IQueryable<Libro> queryLibro = _context.Libro;
@@ -123,7 +98,7 @@ namespace BookStoreAPI.Controllers
 
             //Obtener la lista de clientes que cuyo ID de ciudad sea igual al obtenido según el dato que ingresamos. //*/
             
-            queryLibro = queryLibro.Where(c => c.idCategori.Nombre.StartsWith(Nombre) && c.idOferta.temporada != "No aplica");
+            queryLibro = queryLibro.Where(c => c.titulo.StartsWith(Titulo) && c.idOferta.temporada != "No aplica");
 
            if (queryLibro == null)
             {
