@@ -155,5 +155,12 @@ namespace BookStoreAPI.Controllers
             }
             return await queryLibro.ToListAsync();
         }
+
+
+
+
+
+
+
     }
 }
