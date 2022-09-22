@@ -6,7 +6,8 @@ namespace BookStoreAPI.Models
     {
         [Key]
         public int? idAutor { get; set; }
-        public String? nombreAutor { get; set; }
+        [Required]
+        public string? nombreAutor { get; set; }
         [Required]
         public string? biografia { get; set; }
         [Required]
