@@ -89,7 +89,7 @@ namespace BookStoreAPI.Controllers
 
         // POST: api/Usuarios
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("Registrar")]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
           if (_context.Usuario == null)
