@@ -88,7 +88,7 @@ namespace BookStoreAPI.Controllers
 
         // POST: api/Ventas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("Registrar")]
         public async Task<ActionResult<Venta>> PostVenta(Venta venta)
         {
           if (_context.Venta == null)
